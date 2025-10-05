@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -18,14 +19,14 @@ class ApiClient {
   ): Promise<T> {
     const { token, ...fetchOptions } = options;
 
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
-      ...fetchOptions.headers,
-    };
+   const headers: Record<string, string> = {
+  'Content-Type': 'application/json',
+  ...(fetchOptions.headers as Record<string, string>),
+};
 
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
+if (token) {
+  headers['Authorization'] = `Bearer ${token}`;
+}
 
     const config: RequestInit = {
       ...fetchOptions,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // User Types
 export interface User {
   id: string;
@@ -71,7 +72,7 @@ export interface CreateBlogInput {
   seoDescription?: string;
 }
 
-export interface UpdateBlogInput extends Partial<CreateBlogInput> {}
+export type UpdateBlogInput = Partial<CreateBlogInput>;
 
 // Project Types
 export interface Project {
@@ -114,7 +115,7 @@ export interface CreateProjectInput {
   order?: number;
 }
 
-export interface UpdateProjectInput extends Partial<CreateProjectInput> {}
+export type UpdateProjectInput = Partial<CreateProjectInput>;
 
 // Resume Types
 export interface PersonalInfo {
@@ -190,7 +191,7 @@ export interface CreateResumeInput {
   template?: string;
 }
 
-export interface UpdateResumeInput extends Partial<CreateResumeInput> {}
+export type UpdateResumeInput = Partial<CreateResumeInput>;
 
 // API Response Types
 export interface ApiResponse<T = any> {

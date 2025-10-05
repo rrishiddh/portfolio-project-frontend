@@ -93,11 +93,11 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
   const removeExperience = (index: number) => {
     setFormData({
       ...formData,
-      experience: formData.experience.filter((_, i) => i !== index),
+      experience: formData.experience.filter((_: any, i: number) => i !== index),
     });
   };
 
-  const updateExperience = (index: number, field: keyof Experience, value: any) => {
+  const updateExperience = (index: number, field: keyof Experience, value: string | boolean) => {
     const updated = [...formData.experience];
     updated[index] = { ...updated[index], [field]: value };
     setFormData({ ...formData, experience: updated });
@@ -120,7 +120,7 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
   const removeAchievement = (expIndex: number, achIndex: number) => {
     const updated = [...formData.experience];
     if (updated[expIndex].achievements) {
-      updated[expIndex].achievements = updated[expIndex].achievements!.filter((_, i) => i !== achIndex);
+      updated[expIndex].achievements = updated[expIndex].achievements!.filter((_: any, i: number) => i !== achIndex);
     }
     setFormData({ ...formData, experience: updated });
   };
@@ -148,11 +148,11 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
   const removeEducation = (index: number) => {
     setFormData({
       ...formData,
-      education: formData.education.filter((_, i) => i !== index),
+      education: formData.education.filter((_: any, i: number) => i !== index),
     });
   };
 
-  const updateEducation = (index: number, field: keyof Education, value: any) => {
+  const updateEducation = (index: number, field: keyof Education, value: string | boolean)  => {
     const updated = [...formData.education];
     updated[index] = { ...updated[index], [field]: value };
     setFormData({ ...formData, education: updated });
@@ -168,11 +168,11 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
   const removeSkill = (index: number) => {
     setFormData({
       ...formData,
-      skills: formData.skills.filter((_, i) => i !== index),
+      skills: formData.skills.filter((_: any, i: number) => i !== index),
     });
   };
 
-  const updateSkill = (index: number, field: keyof Skill, value: string) => {
+  const updateSkill = (index: number, field: keyof Skill, value: string)=> {
     const updated = [...formData.skills];
     updated[index] = { ...updated[index], [field]: value };
     setFormData({ ...formData, skills: updated });
@@ -277,7 +277,7 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
       {/* Experience */}
       <div className="space-y-4">
         <h3 className="text-xl font-semibold">Work Experience</h3>
-        {formData.experience.map((exp, index) => (
+        {formData.experience.map((exp: Experience, index: number) => (
           <Card key={index}>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -390,7 +390,7 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
       {/* Education */}
       <div className="space-y-4">
         <h3 className="text-xl font-semibold">Education</h3>
-        {formData.education.map((edu, index) => (
+        {formData.education.map((edu: Education, index: number)  => (
           <Card key={index}>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -455,7 +455,7 @@ export default function ResumeForm({ onSubmit, initialData, isLoading = false }:
           <CardTitle>Skills</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {formData.skills.map((skill, index) => (
+          {formData.skills.map((skill: Skill, index: number)  => (
             <div key={index} className="flex gap-2 items-end">
               <div className="flex-1 space-y-2">
                 <Label>Skill Name</Label>

@@ -60,7 +60,7 @@ export function isTokenExpired(token: string): boolean {
     const decoded = jwtDecode<TokenPayload>(token);
     const currentTime = Date.now() / 1000;
     return decoded.exp < currentTime;
-  } catch (error) {
+  } catch {
     return true;
   }
 }
@@ -94,7 +94,7 @@ export function getUserIdFromToken(): string | null {
   try {
     const decoded = jwtDecode<TokenPayload>(token);
     return decoded.userId;
-  } catch (error) {
+  } catch  {
     return null;
   }
 }

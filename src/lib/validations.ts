@@ -124,14 +124,18 @@ export const contactFormSchema = z.object({
 });
 
 // Helper function to validate data
-export function validateData<T>(schema: z.ZodSchema<T>, data: unknown): { success: true; data: T } | { success: false; errors: Record<string, string> } {
+export function validateData<T>(
+  schema: z.ZodSchema<T>,
+  data: unknown
+): { success: true; data: T } | { success: false; errors: Record<string, string> } {
   try {
     const validData = schema.parse(data);
     return { success: true, data: validData };
   } catch (error) {
     if (error instanceof z.ZodError) {
       const errors: Record<string, string> = {};
-      error.errors.forEach((err) => {
+      // ✅ Type 'err' explicitly as ZodIssue
+      error.issues.forEach((err: z.ZodIssue) => {
         const path = err.path.join('.');
         errors[path] = err.message;
       });

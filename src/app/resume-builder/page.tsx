@@ -104,11 +104,11 @@ export default function ResumeBuilderPage() {
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
     if (!token) {
-      toast({
-        title: 'Authentication required',
-        description: 'Please login to access resume builder',
-        variant: 'destructive',
-      });
+   
+       toast('Authentication required', {
+    description: 'Please login to access resume builder',
+  });
+
       router.push('/login');
     }
   }, [router, toast]);
@@ -222,23 +222,25 @@ export default function ResumeBuilderPage() {
       const data = await response.json();
 
       if (response.ok) {
-        toast({
-          title: 'Resume saved',
+        
+         toast('Resume saved', {
           description: 'Your resume has been saved successfully',
-        });
-      } else {
-        toast({
-          title: 'Error',
+  });
+
+      } else {       
+
+         toast("Error", {
           description: data.error || 'Failed to save resume',
-          variant: 'destructive',
-        });
+  });
+
       }
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Failed to save resume',error,
-        variant: 'destructive',
-      });
+    } catch {
+  
+
+       toast("Error ", {
+        description: 'Failed to save resume',
+  });
+
     } finally {
       setIsSaving(false);
     }
@@ -331,7 +333,7 @@ export default function ResumeBuilderPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="website">Website</Label>
+                      <Label htmlFor="website">Personal Website  *</Label>
                       <Input
                         id="website"
                         placeholder="https://johndoe.com"
@@ -340,7 +342,7 @@ export default function ResumeBuilderPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="linkedin">LinkedIn</Label>
+                      <Label htmlFor="linkedin">LinkedIn *</Label>
                       <Input
                         id="linkedin"
                         placeholder="https://linkedin.com/in/johndoe"
@@ -349,7 +351,7 @@ export default function ResumeBuilderPage() {
                       />
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <Label htmlFor="github">GitHub</Label>
+                      <Label htmlFor="github">GitHub *</Label>
                       <Input
                         id="github"
                         placeholder="https://github.com/johndoe"
@@ -607,7 +609,7 @@ export default function ResumeBuilderPage() {
                   {skills.map((skill, index) => (
                     <div key={index} className="flex gap-2 items-end">
                       <div className="flex-1 space-y-2">
-                        <Label>Skill Name</Label>
+                        <Label>Skill Name*</Label>
                         <Input
                           placeholder="React"
                           value={skill.name}
@@ -615,7 +617,7 @@ export default function ResumeBuilderPage() {
                         />
                       </div>
                       <div className="flex-1 space-y-2">
-                        <Label>Level</Label>
+                        <Label>Level*</Label>
                         <Input
                           placeholder="Expert"
                           value={skill.level}
@@ -623,7 +625,7 @@ export default function ResumeBuilderPage() {
                         />
                       </div>
                       <div className="flex-1 space-y-2">
-                        <Label>Category</Label>
+                        <Label>Category*</Label>
                         <Input
                           placeholder="Frontend"
                           value={skill.category}
@@ -682,9 +684,7 @@ export default function ResumeBuilderPage() {
             </Button>
           </div>
 
-          <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
-            * Required fields
-          </p>
+          
         </motion.div>
       </div>
     </div>
