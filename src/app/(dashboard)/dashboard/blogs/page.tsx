@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Plus, Edit, Trash2, Eye, Search } from "lucide-react";
+import { Plus,  Trash2, Eye, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

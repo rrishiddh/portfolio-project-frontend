@@ -17,8 +17,6 @@ export default function Footer() {
     resources: [
       { label: 'Resume Builder', href: '/resume-builder' },
       { label: 'Dashboard', href: '/dashboard' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
     ],
     social: [
       { icon: Github, href: 'https://github.com/rrishiddh', label: 'GitHub' },
