@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { Plus, Trash2, Save, Download, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
