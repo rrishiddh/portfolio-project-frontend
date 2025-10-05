@@ -66,8 +66,6 @@ Whether you're a recruiter, potential client, or fellow developer, this portfoli
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Project Structure
 
