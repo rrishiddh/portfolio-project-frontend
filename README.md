@@ -19,15 +19,6 @@ Whether you're a recruiter, potential client, or fellow developer, this portfoli
 - **SEO Optimized** - Meta tags, structured data, and optimized content for search engines
 - **Fast Performance** - Server-side rendering and optimized asset loading
 
-### Sections
-- **Hero Section** - Eye-catching introduction with dynamic elements
-- **About** - Professional background and personal introduction
-- **Skills** - Technology stack and expertise visualization
-- **Projects** - Portfolio of work with detailed case studies
-- **Experience** - Professional timeline and career history
-- **Contact** - Multiple ways to get in touch with integrated forms
-- **Blog** (Optional) - Articles and technical writing showcase
-
 ### Interactive Elements
 - Smooth scroll navigation
 - Animated skill bars and progress indicators
