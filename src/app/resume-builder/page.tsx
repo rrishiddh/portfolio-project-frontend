@@ -238,7 +238,6 @@ export default function ResumeBuilderPage() {
     }
   };
 
-  // ✅ New: Download PDF function
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
     let y = 20;
@@ -738,7 +737,7 @@ export default function ResumeBuilderPage() {
               variant="outline"
               className="flex-1"
               size="lg"
-              onClick={handleDownloadPDF} // ✅ enabled and connected
+              onClick={handleDownloadPDF} 
             >
               <Download className="mr-2 h-5 w-5" />
               Download PDF
