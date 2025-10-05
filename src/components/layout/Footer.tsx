@@ -34,7 +34,7 @@ export default function Footer() {
           <div className="text-center sm:text-left flex flex-col items-center sm:items-start">
             <Link href="/" className="inline-block mb-4">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                Portfolio
+                Rahul D.
               </h3>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
@@ -118,10 +118,10 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              © {currentYear} Portfolio. All rights reserved.
+              © {currentYear}, All rights reserved.
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Made with ❤️ by <span className="font-semibold">RRISHIDDH</span>
+              Made by <span className="font-semibold">RRISHIDDH</span>
             </p>
           </div>
         </div>

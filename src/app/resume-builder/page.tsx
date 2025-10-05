@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
+import jsPDF from 'jspdf';
 
 interface PersonalInfo {
   fullName: string;
@@ -104,11 +105,9 @@ export default function ResumeBuilderPage() {
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
     if (!token) {
-   
-       toast('Authentication required', {
-    description: 'Please login to access resume builder',
-  });
-
+      toast('Authentication required', {
+        description: 'Please login to access resume builder',
+      });
       router.push('/login');
     }
   }, [router, toast]);
@@ -222,28 +221,88 @@ export default function ResumeBuilderPage() {
       const data = await response.json();
 
       if (response.ok) {
-        
-         toast('Resume saved', {
+        toast('Resume saved', {
           description: 'Your resume has been saved successfully',
-  });
-
-      } else {       
-
-         toast("Error", {
+        });
+      } else {
+        toast('Error', {
           description: data.error || 'Failed to save resume',
-  });
-
+        });
       }
     } catch {
-  
-
-       toast("Error ", {
+      toast('Error ', {
         description: 'Failed to save resume',
-  });
-
+      });
     } finally {
       setIsSaving(false);
     }
+  };
+
+  // ✅ New: Download PDF function
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+    let y = 20;
+
+    doc.setFontSize(18);
+    doc.text(title, 20, y);
+    y += 10;
+
+    doc.setFontSize(14);
+    doc.text('Personal Info', 20, y);
+    y += 8;
+    doc.setFontSize(11);
+    Object.entries(personalInfo).forEach(([key, value]) => {
+      doc.text(`${key}: ${value || '-'}`, 20, y);
+      y += 6;
+    });
+
+    y += 8;
+    doc.setFontSize(14);
+    doc.text('Experience', 20, y);
+    y += 8;
+    experiences.forEach((exp, i) => {
+      doc.setFontSize(12);
+      doc.text(`${i + 1}. ${exp.position} @ ${exp.company}`, 20, y);
+      y += 6;
+      doc.setFontSize(11);
+      doc.text(`Location: ${exp.location}`, 20, y);
+      y += 5;
+      doc.text(`Duration: ${exp.startDate} - ${exp.current ? 'Present' : exp.endDate}`, 20, y);
+      y += 5;
+      doc.text(`Description: ${exp.description}`, 20, y);
+      y += 6;
+      exp.achievements.forEach((ach) => {
+        doc.text(`- ${ach}`, 25, y);
+        y += 5;
+      });
+      y += 5;
+    });
+
+    y += 8;
+    doc.setFontSize(14);
+    doc.text('Education', 20, y);
+    y += 8;
+    education.forEach((edu, i) => {
+      doc.setFontSize(12);
+      doc.text(`${i + 1}. ${edu.degree} in ${edu.field}`, 20, y);
+      y += 6;
+      doc.setFontSize(11);
+      doc.text(`${edu.institution} (${edu.startDate} - ${edu.current ? 'Present' : edu.endDate})`, 20, y);
+      y += 5;
+      doc.text(`GPA: ${edu.gpa}`, 20, y);
+      y += 6;
+    });
+
+    y += 8;
+    doc.setFontSize(14);
+    doc.text('Skills', 20, y);
+    y += 8;
+    skills.forEach((skill, i) => {
+      doc.text(`${i + 1}. ${skill.name} - ${skill.level} (${skill.category})`, 20, y);
+      y += 6;
+    });
+
+    doc.save(`${title.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
@@ -276,7 +335,9 @@ export default function ResumeBuilderPage() {
             </CardContent>
           </Card>
 
-          <Tabs defaultValue="personal" className="space-y-6">
+
+            {/* All Tabs content remains unchanged */}
+             <Tabs defaultValue="personal" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
               <TabsTrigger value="personal">Personal</TabsTrigger>
               <TabsTrigger value="experience">Experience</TabsTrigger>
@@ -677,14 +738,12 @@ export default function ResumeBuilderPage() {
               variant="outline"
               className="flex-1"
               size="lg"
-              disabled
+              onClick={handleDownloadPDF} // ✅ enabled and connected
             >
               <Download className="mr-2 h-5 w-5" />
               Download PDF
             </Button>
           </div>
-
-          
         </motion.div>
       </div>
     </div>

@@ -289,7 +289,7 @@ export default function ProjectsManagementPage() {
                           View
                         </Link>
                       </Button>
-                      <Button
+                      {/* <Button
                         size="sm"
                         variant="outline"
                         className="flex-1"
@@ -299,7 +299,7 @@ export default function ProjectsManagementPage() {
                           <Edit className="mr-1 h-3 w-3" />
                           Edit
                         </Link>
-                      </Button>
+                      </Button> */}
                       <Button
                         size="sm"
                         variant="destructive"

@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Plus, Eye, Download, Trash2, FileText } from "lucide-react";
+import { Plus,  Trash2, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -83,41 +83,41 @@ export default function ResumesManagementPage() {
     }
   };
 
-  const handleDownload = async (id: string, title: string) => {
-    try {
-      const token = localStorage.getItem("accessToken");
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/resumes/${id}/pdf`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+  // const handleDownload = async (id: string, title: string) => {
+  //   try {
+  //     const token = localStorage.getItem("accessToken");
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/api/resumes/${id}/pdf`,
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     );
 
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${title}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+  //     if (response.ok) {
+  //       const blob = await response.blob();
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement("a");
+  //       a.href = url;
+  //       a.download = `${title}.pdf`;
+  //       document.body.appendChild(a);
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //       document.body.removeChild(a);
 
-        toast("Download started", {
-          description: "Your resume is being downloaded",
-        });
-      } else {
-        toast("Error", {
-          description: "Failed to download resume",
-        });
-      }
-    } catch {
-      toast("Error", {
-        description: "Something went wrong",
-      });
-    }
-  };
+  //       toast("Download started", {
+  //         description: "Your resume is being downloaded",
+  //       });
+  //     } else {
+  //       toast("Error", {
+  //         description: "Failed to download resume",
+  //       });
+  //     }
+  //   } catch {
+  //     toast("Error", {
+  //       description: "Something went wrong",
+  //     });
+  //   }
+  // };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -193,17 +193,17 @@ export default function ResumesManagementPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="mt-auto space-y-2">
-                    <Button
-                      size="sm"
-                      variant="default"
-                      className="w-full"
-                      onClick={() => handleDownload(resume.id, resume.title)}
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      Download PDF
-                    </Button>
                     <div className="flex gap-2">
-                      <Button
+                      {/* <Button
+                        size="sm"
+                        variant="default"
+                        onClick={() => handleDownload(resume.id, resume.title)}
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        Download PDF
+                      </Button> */}
+                      {/* <div className="flex gap-2"> */}
+                      {/* <Button
                         size="sm"
                         variant="outline"
                         className="flex-1"
@@ -213,7 +213,7 @@ export default function ResumesManagementPage() {
                       >
                         <Eye className="mr-2 h-4 w-4" />
                         View/Edit
-                      </Button>
+                      </Button> */}
                       <Button
                         size="sm"
                         variant="destructive"

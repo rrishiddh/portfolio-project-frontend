@@ -78,7 +78,7 @@ const handleLogout = () => {
               whileTap={{ scale: 0.95 }}
               className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
             >
-              Portfolio
+              Rahul D.
             </motion.div>
           </Link>
 
@@ -143,10 +143,10 @@ const handleLogout = () => {
                     <User className="mr-2 h-4 w-4" />
                     Dashboard
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => router.push('/settings')}>
+                  {/* <DropdownMenuItem onClick={() => router.push('/settings')}>
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout} className="text-red-600">
                     <LogOut className="mr-2 h-4 w-4" />
